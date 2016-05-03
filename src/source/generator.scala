@@ -35,9 +35,11 @@ package object generatorTools {
                    javaAnnotation: Option[String],
                    javaNullableAnnotation: Option[String],
                    javaNonnullAnnotation: Option[String],
+                   javaUseFinalForRecord: Boolean,
                    cppOutFolder: Option[File],
                    cppHeaderOutFolder: Option[File],
                    cppIncludePrefix: String,
+                   cppExtendedRecordIncludePrefix: String,
                    cppNamespace: String,
                    cppIdentStyle: CppIdentStyle,
                    cppFileIdentStyle: IdentConverter,
@@ -64,6 +66,7 @@ package object generatorTools {
                    objcppExt: String,
                    objcHeaderExt: String,
                    objcIncludePrefix: String,
+                   objcExtendedRecordIncludePrefix: String,
                    objcppIncludePrefix: String,
                    objcppIncludeCppPrefix: String,
                    objcppIncludeObjcPrefix: String,
@@ -197,8 +200,8 @@ package object generatorTools {
       if (spec.yamlOutFolder.isDefined) {
         if (!spec.skipGeneration) {
           createFolder("YAML", spec.yamlOutFolder.get)
-          new YamlGenerator(spec).generate(idl)
         }
+        new YamlGenerator(spec).generate(idl)
       }
       None
     }
